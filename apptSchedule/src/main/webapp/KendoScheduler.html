@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>html { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="styles/kendo.dataviz.material.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.mobile.min.css" />
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/kendo.timezones.min.js"></script>
+</head>
+<body>
+<div id="scheduler"></div>
+</body>
+</html>
+<script>
+var dataSourceCustomize = new kendo.data.SchedulerDataSource({
+  	transport:{
+  		read: function(options){
+  			// url:"http://localhost:8080/apptSchedule/appt/status?emailId=gn@gmail.com",
+     //  		dataType: "jsonp"
+     		
+      		$.ajax({
+                    url: '/apptSchedule/appt/status?emailId=gn@gmail.com',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        //$dfd.resolve(data);
+                        console.log(data);
+                    },
+                    error: function () {
+                        //$dfd.reject();
+                    }
+               });
+  		}
+
+  		
+  	},
+  	schema:{
+
+  		data : "Records",
+  		model:{
+  			id:"corpId",
+  			fields:{
+  				corpId:{from:"corpId"},
+  				start:{from:"reqDate", type:"date"},
+  				title:{from:"status"} 				
+  			}
+
+  		}
+  	}
+
+  });
+$("#scheduler").kendoScheduler({
+	views: [
+           
+            "week"
+          ],
+  dataSource: dataSourceCustomize
+});
+
+</script>

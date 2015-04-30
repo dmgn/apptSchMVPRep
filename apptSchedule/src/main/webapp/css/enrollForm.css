@@ -1,0 +1,46 @@
+/**********************************
+
+Name: enrollForm Styles
+
+***********************************/
+form.enrollForm {
+	width: 370px;
+	font-size: 1.0em;
+	color: #333;
+}
+
+form.enrollForm legend {
+	padding-left: 0;
+}
+
+form.enrollForm legend, form.enrollForm label {
+	color: #333;
+}
+
+form.enrollForm fieldset {
+	border: none;
+	border-top: 1px solid #C9DCA6;
+	background: url(../images/enrollForm-fieldset.gif) left bottom repeat-x;
+	background-color: #F8FDEF;
+}
+
+form.enrollForm fieldset fieldset {
+	background: none;
+}
+
+form.enrollForm fieldset p, form.enrollForm fieldset fieldset {
+	padding: 5px 10px 7px;
+	background: url(../images/enrollForm-divider.gif) left bottom repeat-x;
+}
+
+form.enrollForm label.error, label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic
+}
+div.error { display: none; }
+input {	border: 1px solid black; }
+input.checkbox { border: none }
+input:focus { border: 1px dotted black; }
+input.error { border: 1px dotted red; }
+form.enrollForm .gray * { color: gray; }
