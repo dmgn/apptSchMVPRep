@@ -12,4 +12,11 @@ public interface AppointmentScheduleReadDao {
 			long clientId, long groupId);
 	
 	ListMessage<AppointmentResponseDtls> findScheduleStatus( String emailId, long clientId, long groupId);
+	
+	ListMessage<AppointmentResponseDtls> findAllAppointments( int status );
+	
+	ListMessage<AppointmentResponseDtls> displayAppointmentsInCalView( String startDt, String endDt);
+
+	ListMessage<AppointmentResponseDtls> viewCandidatesForTimeSlot( long tutorSchdId );
+
 }

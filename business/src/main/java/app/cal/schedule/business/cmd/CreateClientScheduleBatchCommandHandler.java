@@ -22,7 +22,7 @@ public class CreateClientScheduleBatchCommandHandler extends
 		ListMessage<AppointmentResponseDtls> respListMsg = cmd.getBatchMsg();
 		List<AppointmentResponseDtls> respList = respListMsg.getList();
 		for( AppointmentResponseDtls temp : respList){
-			ClientScheduleInfo csi = new ClientScheduleInfo(cmd.getClientId(), cmd.getGroupId(), temp.getTutorScheduleId(), temp.getReqDate(), false,
+			ClientScheduleInfo csi = new ClientScheduleInfo(cmd.getClientId(), cmd.getGroupId(), temp.getTutorSchId(), temp.getReqDate(), false,
 					AppointmentStatus.valueOf(temp.getStatus()).getCode());
 			clientScheduleInfoDao.saveClientScheduleInfoEntity(csi);
 		}

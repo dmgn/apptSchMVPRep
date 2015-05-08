@@ -73,6 +73,9 @@
                       <li>
                         <a href="/apptSchedule/centre/admin/appointmentView" title="View Schedule">Schedule</a>
                       </li>
+                      <li>
+                        <a href="/apptSchedule/centre/admin/scheduledAptGridView" title="View All">View All</a>
+                      </li>
                      </ul>
                     </div>
                    </div>

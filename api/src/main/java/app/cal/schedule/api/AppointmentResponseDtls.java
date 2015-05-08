@@ -43,10 +43,35 @@ public class AppointmentResponseDtls extends BaseMessage {
 	@XmlElement(name="groupId")
 	private long groupId;
 
-	@XmlElement(name="tutorScheduleId")
-	private long tutorScheduleId;
+	@XmlElement(name="tutorSchId")
+	private long tutorSchId;
 
+	@XmlElement(name="tutorName")
+	private String tutorName;
 	
+	@XmlElement(name="count")
+	private int count;
+
+	@XmlElement(name="fName")
+	private String fName;
+
+	@XmlElement(name="lName")
+	private String lName;
+	
+	@XmlElement(name="prodId")
+	private long prodId;
+	
+	@XmlElement(name="prodName")
+	private String prodName;
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -119,12 +144,52 @@ public class AppointmentResponseDtls extends BaseMessage {
 		this.groupId = groupId;
 	}
 
-	public long getTutorScheduleId() {
-		return tutorScheduleId;
+	public long getTutorSchId() {
+		return tutorSchId;
 	}
 
-	public void setTutorScheduleId(long tutorScheduleId) {
-		this.tutorScheduleId = tutorScheduleId;
+	public void setTutorSchId(long tutorSchId) {
+		this.tutorSchId = tutorSchId;
+	}
+
+	public String getTutorName() {
+		return tutorName;
+	}
+
+	public void setTutorName(String tutorName) {
+		this.tutorName = tutorName;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public long getProdId() {
+		return prodId;
+	}
+
+	public void setProdId(long prodId) {
+		this.prodId = prodId;
+	}
+
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
 	}
 	
 	

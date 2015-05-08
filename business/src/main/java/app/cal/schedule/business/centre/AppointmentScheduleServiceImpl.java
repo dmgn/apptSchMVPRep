@@ -1,6 +1,5 @@
 package app.cal.schedule.business.centre;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,19 +8,13 @@ import java.util.Map;
 
 import app.cal.schedule.api.AppointmentResponseDtls;
 import app.cal.schedule.api.AppointmentScheduleDetails;
-import app.cal.schedule.api.BaseMessage;
 import app.cal.schedule.api.ListMessage;
 import app.cal.schedule.business.cmd.CommandHandler;
 import app.cal.schedule.business.cmd.CommandHandlerFactory;
-import app.cal.schedule.business.cmd.CreateClientEnrollment;
-import app.cal.schedule.business.cmd.CreateClientSchedule;
 import app.cal.schedule.business.cmd.CreateClientScheduleBatch;
-import app.cal.schedule.business.cmd.CreateClientScheduleCommandHandler;
 import app.cal.schedule.business.cmd.HandlerContext;
 import app.cal.schedule.business.cmd.HandlerContextFactory;
 import app.cal.schedule.business.dao.jdbc.AppointmentScheduleReadDao;
-import app.cal.schedule.business.dao.jdbc.ClientSvcPkgReadDao;
-import app.cal.schedule.business.entity.ClientScheduleInfo;
 import app.cal.schedule.common.AppointmentStatus;
 
 public class AppointmentScheduleServiceImpl extends BaseService implements
@@ -118,16 +111,21 @@ public class AppointmentScheduleServiceImpl extends BaseService implements
 		unavailableSlots.addAll(availableSlots);
 		return new ListMessage<AppointmentResponseDtls>(unavailableSlots);
 	}
-	
 
-/*	private class AppointmentResponseDtlsComparator implements Comparator<AppointmentScheduleKeys>{
+	@Override
+	public ListMessage<AppointmentResponseDtls> findAllAppointments(int status) {
+		return apptSchReadDao.findAllAppointments(status) ;
+	}
 
-		@Override
-		public int compare(AppointmentScheduleKeys o1,
-				AppointmentScheduleKeys o2) {
-			return (o1.getScheduleDate().equals(o2.getScheduleDate()) && o1.getTimeSlotId() == o2.getTimeSlotId()) ?  0 : 1;
-		}
-		
-	}*/
+	@Override
+	public ListMessage<AppointmentResponseDtls> displayAppointmentsInCalView(
+			String startDt, String endDt) {
+		return apptSchReadDao.displayAppointmentsInCalView(startDt, endDt);
+	}
 
+	@Override
+	public ListMessage<AppointmentResponseDtls> viewCandidatesForTimeSlot(
+			long tutorSchdId) {
+		return apptSchReadDao.viewCandidatesForTimeSlot(tutorSchdId);
+	}
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 
 import app.cal.schedule.api.AppointmentResponseDtls;
 import app.cal.schedule.api.AppointmentScheduleDetails;
-import app.cal.schedule.api.BaseMessage;
 import app.cal.schedule.api.ListMessage;
 
 public interface AppointmentScheduleService {
@@ -29,4 +28,13 @@ public interface AppointmentScheduleService {
 		ListMessage<AppointmentResponseDtls> findScheduleStatus(String emailId);
 		
 		ListMessage<AppointmentResponseDtls> bookAppointments( AppointmentScheduleDetails apptSchdDtls );
+		
+		ListMessage<AppointmentResponseDtls> findAllAppointments(int status);
+		
+		ListMessage<AppointmentResponseDtls> displayAppointmentsInCalView( String startDt, String endDt);
+		
+		ListMessage<AppointmentResponseDtls> viewCandidatesForTimeSlot(long tutorSchdId);
+
+		//
+
 }

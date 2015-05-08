@@ -20,4 +20,10 @@ public class MainPageController {
 		modelMap.addAttribute("refId", refId);
 		return "enrollProduct";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/view/tsId")
+	public String viewCandidateInfoForTimeSlot( @RequestParam(value="tutorSchId", required=true) String tutorSchdId, ModelMap m ){
+		m.addAttribute("tsId", tutorSchdId);
+		return "displayClientSchdInfo";
+	}
 }

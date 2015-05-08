@@ -68,4 +68,23 @@ public class AppointmentScheduleControllerTest {
 		RequestBuilder req = get("/appt/status?emailId=gn@gmail.com").contentType(MediaType.APPLICATION_JSON);
 		MvcResult res = mockMvc.perform(req).andDo(print()).andReturn();
 	}
+	
+	@Test
+	public void testGridViewDataSource() throws Exception{
+		RequestBuilder req = get("/appt/view/tslots?status=1&viewType=Grid").contentType(MediaType.APPLICATION_JSON);
+		MvcResult res = mockMvc.perform(req).andDo(print()).andReturn();
+	}
+	
+	@Test
+	public void testCalViewDataSource() throws Exception{
+		RequestBuilder req = get("/appt/view/tslots?status=1&startDt=2015-05-10&endDt=2015-05-17").contentType(MediaType.APPLICATION_JSON);
+		MvcResult res = mockMvc.perform(req).andDo(print()).andReturn();
+	}
+	
+	@Test
+	public void testCandidateInfo() throws Exception{
+		RequestBuilder req = get("/appt/view/info?tutorSchId=208").contentType(MediaType.APPLICATION_JSON);
+		MvcResult res = mockMvc.perform(req).andDo(print()).andReturn();
+	}
+	
 }

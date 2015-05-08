@@ -18,15 +18,7 @@
 </body>
 </html>
 <script>
-function populateDSObject(startDt, endDt){
-  if(startDt == null)  {
-    var d1 = new Date();
-    var d2 = new Date();
-    d2.setDate(d1.getDate() + 7);
-    var startDt = d1.getFullYear()+"-"+(d1.getMonth() + 1)+"-"+d1.getDate();
-    var endDt = d2.getFullYear()+"-"+(d2.getMonth() + 1)+"-"+d2.getDate();
-  }
-  var dataSourceCustomize = new kendo.data.SchedulerDataSource({
+var dataSourceCustomize = new kendo.data.SchedulerDataSource({
   	transport:{
   		read: function(options){
   			$.ajax({
@@ -53,7 +45,7 @@ function populateDSObject(startDt, endDt){
 			    var $endDt = new Date(response.Records[i].reqDate + " " + response.Records[i].endTime);
 			    response.Records[i].startTime = "\/Date("+$startDt.getTime()+")\/";
 			    response.Records[i].endTime = "\/Date("+$endDt.getTime()+")\/";
-			  }
+			}
   			return response.Records;
   		},
   		model:{
@@ -62,14 +54,17 @@ function populateDSObject(startDt, endDt){
   				corpId:{from:"corpId"},
   				start:{from:"startTime", type:"date"},
   				end:{from:"endTime", type:"date"},
-				  title:{from:"status"} 				
+				title:{from:"status"} 				
   			}
 
   		}
   	}
-  });  
-  return dataSourceCustomize;
-}
+
+  });
+
+dataSourceCustomize.fetch(function() {
+    var event = dataSourceCustomize.at(0);
+});
 
 function setStartTime(){
 	var d = new Date();
@@ -85,61 +80,16 @@ function setEndTime(){
 	return d;
 }
 
-function refreshView(event){
-      /*
-      changeView - navigate to different view
-      next - navigate to next time period
-      previous - navigate to previous time period
-      today - select today's date
-      changeDate - a date is selected via the Calendar
-
-    */
-  var d1 = new Date(event.date);
-  var d2 = new Date(event.date);
-  d2.setDate(d1.getDate() + 7);
-  var startDt = d1.getFullYear()+"-"+(d1.getMonth() + 1)+"-"+d1.getDate();
-  var endDt = d2.getFullYear()+"-"+(d2.getMonth() + 1)+"-"+d2.getDate();
-  populateDSObject(startDt, endDt).read();
-}
-
 $("#scheduler").kendoScheduler({
 	startTime: 	setStartTime(),
 	endTime:   setEndTime(),
-	//currentTimeMarker: false,
-  timezone: "Etc/UTC",
-  height:500,
+	timezone: "Etc/UTC",
 	views: [           
-            {
-             type:"week",
-             allDaySlot: false
-            },
-             {
-             type:"day",
-             allDaySlot: false
-            }
-           // 
+            "week"
            ],
-  dataSource: populateDSObject(),
-  navigate: function(e) {
-    refreshView(e);
-  },
-  group:{
-    resources:["title"],
-    orientation:"vertical"
-  },
-  resources:[ 
-    {
-      field:"title",
-      name:"title",
-      dataSource: [
-                        { text: "Matt", value: "BOOKED", color: "#f8a398" },
-                        { text: "Paul", value: "CANCELLED", color: "#f8a398" }
-                  ],
-    }
-  ],
-  footer: false
+  dataSource: dataSourceCustomize
 });
 
-//console.log($("#scheduler"));
+console.log($("#scheduler"));
 
 </script>
